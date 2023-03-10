@@ -29,6 +29,6 @@ public class User {
     private String password;
     @Column(nullable = false, unique = true)
     private String role;
-    @ManyToMany (mappedBy = "users", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<Rental> rentals = new ArrayList<>();
+/*    @ManyToMany (mappedBy = "users", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private List<Rental> rentals = new ArrayList<>();*/
 }

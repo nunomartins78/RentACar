@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RentalService {
 
-    RentalDto createRental (RentalCreateDto carDto);
+    RentalDto createRental (RentalDto rentalDto);
 
     RentalDto getRentalById(Long rentalId);
 

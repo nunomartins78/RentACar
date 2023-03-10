@@ -3,9 +3,13 @@ import academy.mindswap.rentacar.dto.UserCreateDto;
 import academy.mindswap.rentacar.dto.UserDto;
 import academy.mindswap.rentacar.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserConverter {
 
+    @Autowired
     ObjectMapper objectMapper;
 
     public UserDto fromUserEntityToUserDto(User user) {

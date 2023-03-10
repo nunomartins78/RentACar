@@ -1,14 +1,11 @@
 package academy.mindswap.rentacar.dto;
 
-import academy.mindswap.rentacar.model.Car;
-import academy.mindswap.rentacar.model.User;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ForeignKey;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -22,9 +19,12 @@ public class RentalCreateDto {
     private Date pickUpDate;
     @Column(nullable = false)
     private Date deliveryDate;
-    @Column
+    @NotNull
+    private Long carId;
+
+/*    @Column
     private List<User> users = new ArrayList<>();
     @Column
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();*/
 
 }

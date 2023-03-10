@@ -29,6 +29,6 @@ public class Car {
     private Integer price;
     @Column(nullable = false,unique = true)
     private String licencePlate;
-    @ManyToMany (mappedBy = "cars", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private List<Rental> rentals = new ArrayList<>();
+    /*@ManyToMany (mappedBy = "cars", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private List<Rental> rentals = new ArrayList<>();*/
 }

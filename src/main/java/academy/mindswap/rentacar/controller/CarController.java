@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,28 +37,38 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<CarDto> createCar(@Valid @RequestBody CarCreateDto car, BindingResult bindingResult){
+    public ResponseEntity<CarDto> createCar(@Valid @RequestBody CarCreateDto carDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
+            List<FieldError> errors = bindingResult.getFieldErrors();
 
-            bindingResult.getAllErrors().forEach(System.out::println);
-            //throw new IllegalArgumentException("Invalid user");
+            for(FieldError error : errors){
+                System.out.println(error.getObjectName() + "-" + error.getDefaultMessage());
+            }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        CarDto savedCar = carService.createCar(car);
-        return new ResponseEntity<>(savedCar, HttpStatus.CREATED);
+        CarDto createdCar = carService.createCar(carDto);
+        return new ResponseEntity<>(createdCar, HttpStatus.CREATED);
 
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CarDto> updateCar(@PathVariable Long id,@Valid @RequestBody CarDto carDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
+            List<FieldError> errors = bindingResult.getFieldErrors();
 
-            bindingResult.getAllErrors().forEach(System.out::println);
-            //throw new IllegalArgumentException("Invalid user");
+            for(FieldError error : errors){
+                System.out.println(error.getObjectName() + "-" + error.getDefaultMessage());
+            }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        CarDto savedCar = carService.updateCar(id, carDto);
-        return new ResponseEntity<>(savedCar, HttpStatus.CREATED);
+        CarDto updatedCar = carService.updateCar(id, carDto);
+        return new ResponseEntity<>(updatedCar, HttpStatus.CREATED);
+
+    }
+    @DeleteMapping
+    public ResponseEntity<CarDto> deleteCar(@PathVariable Long id){
+        carService.deleteCar(id);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 }

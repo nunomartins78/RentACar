@@ -18,12 +18,19 @@ import java.util.List;
 @AllArgsConstructor
 public class RentalDto {
 
+    private Long id;
     @Column(nullable = false)
     private Date pickUpDate;
     @Column(nullable = false)
     private Date deliveryDate;
-    @Column
+
+    @NotNull(message = "Insert car id")
+    private Long carId;
+    @NotNull(message = "Insert user id")
+    private Long userId;
+
+    /*@Column
     private List<User> users = new ArrayList<>();
     @Column
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars = new ArrayList<>();*/
 }
