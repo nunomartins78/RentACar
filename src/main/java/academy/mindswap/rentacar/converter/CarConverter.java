@@ -4,10 +4,13 @@ import academy.mindswap.rentacar.dto.CarCreateDto;
 import academy.mindswap.rentacar.dto.CarDto;
 import academy.mindswap.rentacar.model.Car;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CarConverter {
+
+    @Autowired
     ObjectMapper objectMapper;
 
     public CarDto fromCarEntityToCarDto(Car car){

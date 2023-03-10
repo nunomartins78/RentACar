@@ -6,9 +6,11 @@ import academy.mindswap.rentacar.dto.RentalDto;
 import academy.mindswap.rentacar.model.Rental;
 import academy.mindswap.rentacar.repository.RentalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RentalServiceImpl implements RentalService {
     private RentalRepository rentalRepository;
     private RentalConverter rentalConverter;
