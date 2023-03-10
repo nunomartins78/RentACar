@@ -1,11 +1,11 @@
 package academy.mindswap.rentacar.service;
 
-
 import academy.mindswap.rentacar.converter.UserConverter;
 import academy.mindswap.rentacar.dto.UserCreateDto;
 import academy.mindswap.rentacar.dto.UserDto;
 import academy.mindswap.rentacar.model.User;
 import academy.mindswap.rentacar.repository.UserRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,11 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+   @Autowired
     private UserRepository userRepository;
-    private UserConverter userConverter;
+   @Autowired
+   private EntityManager entityManager;
+   private UserConverter userConverter;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, UserConverter userConverter) {
