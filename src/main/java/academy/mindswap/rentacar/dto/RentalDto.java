@@ -29,8 +29,4 @@ public class RentalDto {
     @NotNull(message = "Insert user id")
     private Long userId;
 
-    /*@Column
-    private List<User> users = new ArrayList<>();
-    @Column
-    private List<Car> cars = new ArrayList<>();*/
 }

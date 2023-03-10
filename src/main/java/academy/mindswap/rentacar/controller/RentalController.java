@@ -1,6 +1,5 @@
 package academy.mindswap.rentacar.controller;
 
-import academy.mindswap.rentacar.dto.RentalCreateDto;
 import academy.mindswap.rentacar.dto.RentalDto;
 import academy.mindswap.rentacar.service.RentalService;
 import jakarta.validation.Valid;
