@@ -22,9 +22,4 @@ public class RentalCreateDto {
     @NotNull
     private Long carId;
 
-/*    @Column
-    private List<User> users = new ArrayList<>();
-    @Column
-    private List<Car> cars = new ArrayList<>();*/
-
 }

@@ -10,6 +10,4 @@ public class RentacarApplication {
 		SpringApplication.run(RentacarApplication.class, args);
 	}
 
-
-	//springdoc.org
 }
