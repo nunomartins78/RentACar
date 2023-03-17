@@ -1,6 +1,7 @@
 package academy.mindswap.rentacar.security.config;
 
 import academy.mindswap.rentacar.repository.UserRepository;
+import academy.mindswap.rentacar.security.auth.EffingStupidError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,8 @@ public class ApplicationConfig {
     DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
     authProvider.setUserDetailsService(userDetailsService());
     authProvider.setPasswordEncoder(passwordEncoder());
+    authProvider.setPreAuthenticationChecks(new EffingStupidError());
+    authProvider.setPostAuthenticationChecks(new EffingStupidError());
     return authProvider;
   }
 

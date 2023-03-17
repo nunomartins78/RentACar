@@ -24,8 +24,12 @@ public class AuthenticationController {
   public ResponseEntity<AuthenticationResponse> authenticate(
       @RequestBody AuthenticationRequest request
   ) {
-    return ResponseEntity.ok(service.authenticate(request));
+    try {
+      return ResponseEntity.ok(service.authenticate(request));
+    } catch (Exception e) {
+      System.out.println(e);
+      throw e;
+    }
   }
-
 
 }

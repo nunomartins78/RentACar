@@ -2,6 +2,10 @@ package academy.mindswap.rentacar.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +33,7 @@ public class Car {
     private Integer price;
     @Column(nullable = false,unique = true)
     private String licencePlate;
+    @Column
+    private boolean deleted = Boolean.FALSE;
 
 }

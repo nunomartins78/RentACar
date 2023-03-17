@@ -3,11 +3,14 @@ package academy.mindswap.rentacar.model;
 import academy.mindswap.rentacar.security.token.Token;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,6 +22,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+
+@SQLDelete(sql = "UPDATE cars SET deleted = true WHERE id=?")
+@FilterDef(name = "deletedCarFilter", parameters = @ParamDef(name = "isDeleted", type = Boolean.class))
+@Filter(name = "deletedCarFilter", condition = "deleted = :isDeleted")
+
 public class User implements UserDetails {
 
     @Id
@@ -36,6 +44,8 @@ public class User implements UserDetails {
     private Role role;
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+   @Column
+   private boolean deleted = Boolean.FALSE;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

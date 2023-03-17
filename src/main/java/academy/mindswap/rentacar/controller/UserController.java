@@ -19,13 +19,14 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private Boolean isDeleted = true;
 
     @Autowired
     public UserController(UserService userService){
         this.userService = userService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/admin")
     public ResponseEntity <List<UserDto>> getAllUsers(){
         List<UserDto> userDto = userService.getAllUsers();
         return new ResponseEntity<>(userDto,HttpStatus.OK);
@@ -52,19 +53,18 @@ public class UserController {
 
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("admin/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id,@Valid @RequestBody UserDto userDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
 
             bindingResult.getAllErrors().forEach(System.out::println);
-            //throw new IllegalArgumentException("Invalid user");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         UserDto savedUser = userService.updateUser(id, userDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 
     }
-    @DeleteMapping
+    @DeleteMapping("/admin")
     public ResponseEntity<RentalDto> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
